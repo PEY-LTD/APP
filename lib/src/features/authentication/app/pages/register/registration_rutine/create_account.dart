@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:pey/src/core/resources/constants.dart';
 import 'package:pey/src/core/widgets/app_text_field.dart';
+import 'package:pey/src/features/authentication/app/notifier/registration_notifier.dart';
 import 'package:pey/src/features/authentication/app/widgets/text_header.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -15,8 +16,21 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
+  RegistrationNotifier registrationNotifier = RegistrationNotifier();
+  final TextEditingController _emailontroller = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _cpasswordController = TextEditingController();
+
   @override
+  void dispose() {
+    _emailontroller.dispose();
+    _passwordController.dispose();
+    _cpasswordController.dispose();
+    super.dispose();
+  }
+
   var kAppkey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
@@ -29,7 +43,10 @@ class _CreateAccountState extends State<CreateAccount> {
                 p0: "Create your account", p1: "Enter your Email and password"),
             h25,
             AppTextField(
-              controller: TextEditingController(),
+              controller: _emailontroller,
+              onChange: (value) {
+                registrationNotifier.setEmail(value);
+              },
               validator: Validatorless.multiple([
                 Validatorless.required(
                     "First name should have at least one character."),
@@ -41,7 +58,10 @@ class _CreateAccountState extends State<CreateAccount> {
             ),
             h10,
             AppTextField(
-              controller: TextEditingController(),
+              controller: _passwordController,
+              onChange: (value) {
+                registrationNotifier.setPassword(value);
+              },
               validator: Validatorless.multiple([
                 Validatorless.required(
                     "First name should have at least one character.")
@@ -54,7 +74,10 @@ class _CreateAccountState extends State<CreateAccount> {
             h10,
             AppTextField(
               obscure: true,
-              controller: TextEditingController(),
+              onChange: (value) {
+                registrationNotifier.setcPassword(value);
+              },
+              controller: _cpasswordController,
               validator: Validatorless.multiple([
                 Validatorless.required(
                     "First name should have at least one character.")

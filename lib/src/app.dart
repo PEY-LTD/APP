@@ -6,6 +6,7 @@ import 'package:pey/src/core/dependencies/k_route.dart';
 import 'package:pey/src/core/storage/storage.dart';
 import 'package:pey/src/core/theme/theme.dart';
 import 'package:pey/src/features/authentication/app/pages/register/register.dart';
+import 'package:pey/src/features/new_screen.dart';
 import 'package:pey/src/features/onboard/app/pages/onboard.dart';
 import 'package:pey/src/features/onboard/app/pages/splash.dart';
 

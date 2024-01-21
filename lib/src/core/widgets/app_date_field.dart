@@ -6,6 +6,7 @@ import 'package:pey/src/core/resources/colors.dart';
 import 'package:pey/src/core/resources/constants.dart';
 import 'package:pey/src/core/resources/enum.dart';
 import 'package:pey/src/core/resources/strings.dart';
+import 'package:pey/src/features/authentication/app/notifier/registration_notifier.dart';
 import '../helpers/helpers.dart';
 
 class AppDateField extends StatefulWidget {
@@ -34,6 +35,7 @@ class AppDateField extends StatefulWidget {
   final bool? editable;
   final TextFiledDecorationType docorationType;
   final bool? loading;
+  final bool fromRegistration;
 
   const AppDateField({
     super.key,
@@ -62,6 +64,7 @@ class AppDateField extends StatefulWidget {
     this.isTextArea = false,
     this.editable,
     this.loading,
+    this.fromRegistration = false,
   });
 
   @override
@@ -69,6 +72,7 @@ class AppDateField extends StatefulWidget {
 }
 
 class _AppDateFieldState extends State<AppDateField> {
+  RegistrationNotifier registrationNotifier = RegistrationNotifier();
   bool obscureText = false;
   String? errorText;
 
@@ -134,6 +138,9 @@ class _AppDateFieldState extends State<AppDateField> {
 
                 if (date != null) {
                   widget.controller.text = date.toDateString;
+                  if (widget.fromRegistration) {
+                    registrationNotifier.setDob(date.toDateString);
+                  }
                 }
               },
               textCapitalization:

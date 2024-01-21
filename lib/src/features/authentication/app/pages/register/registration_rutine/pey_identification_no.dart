@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:pey/src/core/resources/constants.dart';
 import 'package:pey/src/core/widgets/app_text_field.dart';
+import 'package:pey/src/features/authentication/app/notifier/registration_notifier.dart';
 import 'package:pey/src/features/authentication/app/widgets/text_header.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -18,18 +19,27 @@ class PeyIdentification extends StatefulWidget {
 class _PeyIdentificationState extends State<PeyIdentification> {
   @override
   var kAppkey = GlobalKey<FormState>();
-
-  _PeyIdentificationState() {
-    widget.runTask = () {
-      print("object");
-    };
-  }
+  RegistrationNotifier registrationNotifier = RegistrationNotifier();
+  final TextEditingController _userNameController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    _userNameController.dispose();
+    super.dispose();
   }
 
+  // _PeyIdentificationState() {
+  //   widget.runTask = () {
+  //     print("object");
+  //   };
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
@@ -43,7 +53,10 @@ class _PeyIdentificationState extends State<PeyIdentification> {
                 p1: "Your unique ID for receiving money"),
             h25,
             AppTextField(
-              controller: TextEditingController(),
+              controller: _userNameController,
+              onChange: (value) {
+                registrationNotifier.setUsername(value);
+              },
               validator: Validatorless.multiple([
                 Validatorless.required(
                     "First name should have at least one character.")

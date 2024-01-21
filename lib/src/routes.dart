@@ -13,6 +13,9 @@ Route onGenerateRoute(RouteSettings settings) {
     case Onboard.route:
       return KRoute(child: const Onboard());
 
+    case NewScreen.route:
+      return KRoute(child: const NewScreen());
+
     default:
       return KRoute(child: const Text("Unkw"));
   }
