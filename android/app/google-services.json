@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "397738794795",
+    "project_id": "pey-rv",
+    "storage_bucket": "pey-rv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397738794795:android:d04d503a2cd757c7526f6e",
+        "android_client_info": {
+          "package_name": "com.example.pey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3yfPYNA3jdk5TtKOtclCc4fErZykDpHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
